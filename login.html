@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Example</title>
+    <style>
+      /* Your CSS styles */
+      .hidden {
+        display: none;
+      }
+      #loginModal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      div {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 90%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .button1 {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        width: 10%;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .button2 {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Add more styles as needed */
+    </style>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+  </head>
+  <body>
+    <button class="button1" onclick="showLoginModal()">Login</button>
+
+    <div id="loginModal" class="hidden">
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button class="button2" onclick="signIn()">Sign In</button>
+    </div>
+
+    <script>
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCkEgBclz8PXw0nyO4t4Rd-GtI4nOkUnmg",
+        authDomain: "login-7b410.firebaseapp.com",
+        projectId: "login-7b410",
+        storageBucket: "login-7b410.appspot.com",
+        messagingSenderId: "391579918434",
+        appId: "1:391579918434:web:87ab7ccfe98a313ebe713b",
+        measurementId: "G-7B3KJEF70C",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      // Show login modal
+      function showLoginModal() {
+        document.getElementById("loginModal").classList.remove("hidden");
+      }
+
+      // Sign in function
+      function signIn() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Redirect to another page on successful login
+            window.location.href = "index.html"; // Replace with your desired page
+          })
+          .catch((error) => {
+            console.error("Error signing in:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
